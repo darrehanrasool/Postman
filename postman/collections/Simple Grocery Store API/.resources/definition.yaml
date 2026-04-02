@@ -1,0 +1,36 @@
+$kind: collection
+name: Simple Grocery Store API
+description: >-
+  This collection covers the full workflow of the **Simple Grocery Store API** —
+  a REST API available at `https://simple-grocery-store-api.click` that
+  simulates an in-store grocery pick-up ordering system.
+
+
+  ## What's covered
+
+
+  - **Status** – Check whether the API is up and running.
+
+  - **Products** – Browse the product inventory. Filter by category (e.g.
+  fresh-produce, dairy, coffee), limit the number of results, and check
+  availability.
+
+  - **Cart** – Create a new cart, add or remove items, update quantities, and
+  retrieve cart contents.
+
+  - **Orders** – Place an order from a cart, view all orders or a single order,
+  update order details, and delete orders. Order endpoints require
+  authentication.
+
+  - **Authentication** – Register an API client with a name and email address to
+  receive a bearer token used in the `Authorization` header for protected
+  endpoints.
+
+
+  ## Authentication
+
+
+  Endpoints that create or manage orders require a bearer token. Register a new
+  API client via `POST /api-clients` to obtain one.
+variables:
+  address: https://simple-grocery-store-api.click

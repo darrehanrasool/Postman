@@ -1,0 +1,5 @@
+$kind: http-request
+name: Grocery Store API single product
+url: "{{address}}/products"
+method: GET
+order: 4367246815927349

@@ -1,0 +1,7 @@
+$kind: http-request
+name: Grocery Store API Get cart items
+url: "{{address}}/carts/:cartId/items"
+method: GET
+pathVariables:
+  cartId: "{{cartId}}"
+order: 4470387521551551

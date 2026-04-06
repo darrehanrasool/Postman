@@ -1,5 +1,8 @@
 api              : application programing interface
 url              : uniform resource locator
+yaml             : YAML Ain’t Markup Language
+html             : Hyper Text Markup Language
+xml              : Extensible Markup Language
 path variable    : {{address}}/products/:productId
 query parameter  : {{address}}/products?category=coffee&results=3
 postman          : case sensitive

@@ -1,0 +1,14 @@
+$kind: http-request
+name: Grocery Store API Add an item to cart
+url: "{{address}}/carts/:cartId/items"
+method: POST
+pathVariables:
+  cartId: "{{cartId}}"
+body:
+  type: json
+  content: |-
+    {
+        "productId": 1225,
+        "quantity": 2
+    }
+order: 4477579036489192

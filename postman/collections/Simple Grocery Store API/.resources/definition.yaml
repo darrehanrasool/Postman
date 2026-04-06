@@ -34,3 +34,5 @@ description: >-
   API client via `POST /api-clients` to obtain one.
 variables:
   address: https://simple-grocery-store-api.click
+  accessToken: bc0b0fecb2d79af7aa856c407a849613624344c10a688013a2a3fe3ce8946e03
+  cartId: 6754-HJQxSPCASdWYyLmR

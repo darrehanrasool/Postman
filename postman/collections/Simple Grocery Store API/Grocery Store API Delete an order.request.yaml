@@ -1,0 +1,11 @@
+$kind: http-request
+name: Grocery Store API Delete an order
+url: "{{address}}/orders/:orderId"
+method: DELETE
+pathVariables:
+  orderId: 2TO8iiLMS4-oV-AYFaTNl
+auth:
+  credentials:
+    token: "{{accessToken}}"
+  type: bearer
+order: 4502975617069214

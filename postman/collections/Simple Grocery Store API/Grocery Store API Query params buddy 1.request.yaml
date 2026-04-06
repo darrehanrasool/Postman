@@ -1,0 +1,12 @@
+$kind: http-request
+name: Grocery Store API Query params buddy 1
+url: "{{address}}/products?category=candy&results =1&available=true"
+method: GET
+queryParams:
+  - key: category
+    value: candy
+  - key: "results "
+    value: "1"
+  - key: available
+    value: "true"
+order: 4331312146031991

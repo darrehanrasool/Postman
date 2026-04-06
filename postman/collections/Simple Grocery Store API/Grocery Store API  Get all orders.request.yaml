@@ -1,0 +1,12 @@
+$kind: http-request
+name: Grocery Store API  Get all orders
+url: "{{address}}/orders"
+method: GET
+body:
+  type: json
+  content: ""
+auth:
+  credentials:
+    token: "{{accessToken}}"
+  type: bearer
+order: 4489879848977365

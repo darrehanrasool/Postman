@@ -1,0 +1,18 @@
+$kind: http-request
+name: Grocery Store API Modify an item in the cart
+url: "{{address}}/carts/:cartId/items/:itemId"
+method: PATCH
+pathVariables:
+  cartId: "{{cartId}}"
+  itemId: "432001206"
+body:
+  type: json
+  content: |-
+    {
+        "quantity": 3
+    }
+auth:
+  credentials:
+    token: "{{accessToken}}"
+  type: bearer
+order: 4482341785174366

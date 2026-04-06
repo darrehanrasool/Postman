@@ -1,0 +1,11 @@
+$kind: http-request
+name: Grocery Store API Query params buddy 2
+url: "{{address}}/products/:productId?product-label=true"
+method: GET
+queryParams:
+  - key: product-label
+    value: "true"
+pathVariables:
+  - key: productId
+    value: "1225"
+order: 4404736425826138

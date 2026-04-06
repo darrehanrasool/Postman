@@ -1,0 +1,18 @@
+$kind: http-request
+name: Grocery Store API  Update an order
+url: "{{address}}/orders/:orderId"
+method: PATCH
+pathVariables:
+  orderId: UK8eVRS1aUMQLbfshyyLN
+body:
+  type: json
+  content: >-
+    {
+        "customerName": "Dar Rehan Rasool ",
+        "comment":"Wallahi Amazing Product and Service Habibi pick up 4:00 am 💭"
+    } 
+auth:
+  credentials:
+    token: "{{accessToken}}"
+  type: bearer
+order: 4502659023009917

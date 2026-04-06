@@ -1,0 +1,17 @@
+$kind: http-request
+name: Grocery Store API Create a new order
+url: "{{address}}/orders"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "cartId":"s_8yzDNIZb5mJ7BgjKaEC",
+        "customerName": "{{$randomFullName}}",
+        "comment":"Wallahi Amazing Product and Service Habibipick up 5:00 am 🫥"
+    }
+auth:
+  credentials:
+    token: "{{accessToken}}"
+  type: bearer
+order: 4490010703497195

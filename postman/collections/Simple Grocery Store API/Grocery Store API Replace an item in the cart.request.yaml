@@ -1,0 +1,19 @@
+$kind: http-request
+name: Grocery Store API Replace an item in the cart
+url: "{{address}}/carts/:cartId/items/:itemId"
+method: PUT
+pathVariables:
+  cartId: "{{cartId}}"
+  itemId: "432001206"
+body:
+  type: json
+  content: |-
+    {
+        "productId": 1710,
+        "quantity": 2
+    }
+auth:
+  credentials:
+    token: "{{accessToken}}"
+  type: bearer
+order: 4483680042576095

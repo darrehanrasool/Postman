@@ -1,7 +1,0 @@
-$kind: http-request
-name: Grocery Store API single product
-url: "{{address}}/products/:productId"
-method: GET
-pathVariables:
-  productId: "1225"
-order: 4367246815927349

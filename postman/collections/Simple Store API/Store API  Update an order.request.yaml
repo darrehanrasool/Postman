@@ -1,9 +1,10 @@
 $kind: http-request
-name: Grocery Store API  Update an order
+name: Store API  Update an order
 url: "{{address}}/orders/:orderId"
 method: PATCH
 pathVariables:
-  orderId: UK8eVRS1aUMQLbfshyyLN
+  - key: orderId
+    value: UK8eVRS1aUMQLbfshyyLN
 body:
   type: json
   content: >-
@@ -13,6 +14,7 @@ body:
     } 
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 order: 4502659023009917

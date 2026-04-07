@@ -1,5 +1,5 @@
 $kind: http-request
-name: Grocery Store API Create cart
+name: Store API Create cart
 url: "{{address}}/carts"
 method: POST
 order: 4423241758983917

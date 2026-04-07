@@ -1,5 +1,5 @@
 $kind: http-request
-name: Grocery Store API Create a new order
+name: Store API Create a new order
 url: "{{address}}/orders"
 method: POST
 body:
@@ -12,6 +12,7 @@ body:
     }
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 order: 4490010703497195

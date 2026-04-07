@@ -1,7 +1,8 @@
 $kind: http-request
-name: Grocery Store API Get a cart
+name: Store API Get a cart
 url: "{{address}}/carts/:cartId"
 method: GET
 pathVariables:
-  cartId: "{{cartId}}"
+  - key: cartId
+    value: "{{cartId}}"
 order: 4451641790272401

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Grocery Store API Status
+name: Store API Status
 url: "{{address}}/status"
 method: GET
 order: 1775136387268

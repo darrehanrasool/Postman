@@ -1,9 +1,10 @@
 $kind: http-request
-name: Grocery Store API Add an item to cart
+name: Store API Add an item to cart
 url: "{{address}}/carts/:cartId/items"
 method: POST
 pathVariables:
-  cartId: "{{cartId}}"
+  - key: cartId
+    value: "{{cartId}}"
 body:
   type: json
   content: |-

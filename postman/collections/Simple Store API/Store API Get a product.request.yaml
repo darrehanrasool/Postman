@@ -1,5 +1,5 @@
 $kind: http-request
-name: Grocery Store API Get a product
+name: Store API Get a product
 url: "{{address}}/products/:productId"
 method: GET
 pathVariables:

@@ -1,15 +1,18 @@
 $kind: http-request
-name: Grocery Store API Delete an item in the cart
+name: Store API Delete an item in the cart
 url: "{{address}}/carts/:cartId/items/:itemId"
 method: DELETE
 pathVariables:
-  cartId: "{{cartId}}"
-  itemId: " 432001206"
+  - key: cartId
+    value: "{{cartId}}"
+  - key: itemId
+    value: " 432001206"
 body:
   type: json
   content: ""
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 order: 4484485806990072

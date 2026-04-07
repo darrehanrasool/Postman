@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{address}}1/members/me/?key={{trellokey}}&token={{trellotoken}}"
+method: GET
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+auth:
+  credentials:
+    key: ""
+    value: ""
+  type: apikey
+order: 1775507965092

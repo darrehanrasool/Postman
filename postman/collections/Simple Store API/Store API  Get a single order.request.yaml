@@ -1,16 +1,19 @@
 $kind: http-request
-name: Grocery Store API  Get a single order
+name: Store API  Get a single order
 url: "{{address}}/orders/:orderId?invoice=true"
 method: GET
 queryParams:
-  invoice: "true"
+  - key: invoice
+    value: "true"
 pathVariables:
-  orderId: mcW9x25FFp4Xa7ViBQ3A0
+  - key: orderId
+    value: mcW9x25FFp4Xa7ViBQ3A0
 body:
   type: json
   content: ""
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 order: 4489924102801303

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Grocery Store API Register a new API client
+name: Store API Register a new API client
 url: "{{address}}/api-clients"
 method: POST
 body:

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Grocery Store API Query params buddy 2
+name: Store API Query params buddy 2
 url: "{{address}}/products/:productId?product-label=true"
 method: GET
 queryParams:

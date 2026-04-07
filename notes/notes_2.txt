@@ -3,3 +3,4 @@
     "customerName": "{{$randomFullName}}",
     "comment":"Amazing Product"
 }
+case sensitive : Key Token  space as variable : error

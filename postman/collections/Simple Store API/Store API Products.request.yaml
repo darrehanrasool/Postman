@@ -1,5 +1,67 @@
 $kind: http-request
 name: Store API Products
-url: "{{address}}/products"
+description: |-
+  Retrieves a list of all products available in the Simple Grocery Store.
+
+  ## Endpoint
+
+  `GET {{address}}/products`
+
+  Full URL: `https://simple-grocery-store-api.click/products`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  None.
+
+  ## Query Parameters
+
+  | Parameter   | Type    | Required | Description                                                                                                                                                                                                  |
+  |-------------|---------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | `category`  | string  | No       | Filter products by category. Accepted values: `fresh-produce`, `dairy`, `coffee`, `candy`, `meat-seafood`, `bread-bakery`, `beverages`, `pet-care`, `cleaning`, `baby-care`, `health-beauty`, `frozen`, `dry-goods`, `butcher` |
+  | `results`   | integer | No       | Number of results to return. Range: `1`–`20`. Default: `20`.                                                                                                                                                 |
+  | `available` | boolean | No       | Filter by availability. `true` returns only in-stock products; `false` returns only out-of-stock products.                                                                                                   |
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  [
+    {
+      "id": 1225,
+      "category": "candy",
+      "name": "Sour Patch Kids",
+      "inStock": true
+    },
+    {
+      "id": 1710,
+      "category": "dairy",
+      "name": "Whole Milk (1 gal)",
+      "inStock": true
+    },
+    {
+      "id": 4643,
+      "category": "fresh-produce",
+      "name": "Organic Bananas",
+      "inStock": false
+    }
+  ]
+  ```
+
+  ## Notes
+
+  - Without any query parameters, this endpoint returns up to **20 products** across all categories.
+  - Combine `category`, `results`, and `available` to narrow down results — e.g., `?category=dairy&results=5&available=true`.
+  - Use the `id` field from the response as the `productId` path variable in subsequent product or cart requests.
+  - The `{{address}}` variable should be set to `https://simple-grocery-store-api.click` in your active environment.
+url: '{{address}}/products'
 method: GET
 order: 4284798868214003

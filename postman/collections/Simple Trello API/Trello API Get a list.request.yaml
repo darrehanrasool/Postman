@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API Get a list
+url: "{{address}}1/lists/:id?key={{trellokey}}&token={{trellotoken}}"
+method: GET
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+pathVariables:
+  id: 69d54b3e1758f4789f27ede7
+order: 4478361534571090

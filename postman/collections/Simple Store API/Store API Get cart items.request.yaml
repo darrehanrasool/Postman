@@ -1,8 +1,72 @@
 $kind: http-request
 name: Store API Get cart items
-url: "{{address}}/carts/:cartId/items"
+description: |-
+  Retrieves all items currently in a specific shopping cart.
+
+  ## Endpoint
+
+  `GET {{address}}/carts/:cartId/items`
+
+  Full URL: `https://simple-grocery-store-api.click/carts/s_8yzDNIZb5mJ7BgjKaEC/items`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  | Variable | Type   | Required | Value in this request | Description                                                                 |
+  |----------|--------|----------|-----------------------|-----------------------------------------------------------------------------|
+  | `cartId` | string | Yes      | `{{cartId}}`          | The unique cart identifier returned when the cart was created via `POST /carts`. |
+
+  ## Query Parameters
+
+  None.
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  [
+    {
+      "id": 432001206,
+      "productId": 1225,
+      "quantity": 2,
+      "name": "Sour Patch Kids",
+      "price": 2.49,
+      "totalPrice": 4.98
+    },
+    {
+      "id": 432001207,
+      "productId": 1710,
+      "quantity": 1,
+      "name": "Whole Milk (1 gal)",
+      "price": 3.99,
+      "totalPrice": 3.99
+    }
+  ]
+  ```
+
+  **Status:** `200 OK` (empty cart)
+
+  ```json
+  []
+  ```
+
+  ## Notes
+
+  - This endpoint returns a **flat array** of items, making it easier to iterate over than the full cart object from `GET /carts/:cartId`.
+  - The `id` field for each item is the `itemId` required by the modify (`PATCH`), replace (`PUT`), and delete (`DELETE`) item endpoints.
+  - An empty array `[]` is returned when the cart exists but has no items — this is not an error.
+  - The `{{cartId}}` variable must be set in your active environment (populated by running "Store API Create cart").
+url: '{{address}}/carts/:cartId/items'
 method: GET
 pathVariables:
   - key: cartId
-    value: "{{cartId}}"
+    value: '{{cartId}}'
 order: 4470387521551551

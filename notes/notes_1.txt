@@ -13,4 +13,4 @@ via web browser  : we have agent's
 via application  : we don't have agents's
 cloud agent      : limited number of requests availaible
 desktop agent    : send requests from local machine
-browser agent    : not compatable with all types of api    
+browser agent    : not compatable with all types of api

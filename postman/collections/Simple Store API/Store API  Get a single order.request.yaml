@@ -1,19 +1,102 @@
 $kind: http-request
 name: Store API  Get a single order
-url: "{{address}}/orders/:orderId?invoice=true"
+description: |-
+  Retrieves the full details of a specific order by its ID. Optionally includes invoice data when the `invoice=true` query parameter is provided.
+
+  ## Endpoint
+
+  `GET {{address}}/orders/:orderId`
+
+  Full URL: `https://simple-grocery-store-api.click/orders/mcW9x25FFp4Xa7ViBQ3A0?invoice=true`
+
+  ## Authentication
+
+  **Bearer Token** — required. Pass the `{{accessToken}}` variable as a Bearer token in the `Authorization` header.
+
+  > Register an API client via `POST /api-clients` to obtain an `accessToken` if you don't have one yet.
+
+  ## Path Variables
+
+  | Variable  | Type   | Required | Value in this request    | Description                                                              |
+  |-----------|--------|----------|--------------------------|--------------------------------------------------------------------------|
+  | `orderId` | string | Yes      | `mcW9x25FFp4Xa7ViBQ3A0`  | The unique order identifier. Obtain from `POST /orders` or `GET /orders`. |
+
+  ## Query Parameters
+
+  | Parameter | Type    | Required | Value in this request | Description                                                              |
+  |-----------|---------|----------|-----------------------|--------------------------------------------------------------------------|
+  | `invoice` | boolean | No       | `true`                | When `true`, includes a full invoice breakdown (line items, totals, tax) in the response. |
+
+  ## Request Body
+
+  None — the request body is not used for this GET request.
+
+  ## Example Response
+
+  **Status:** `200 OK` (with `invoice=true`)
+
+  ```json
+  {
+    "id": "mcW9x25FFp4Xa7ViBQ3A0",
+    "created": "2024-03-15T08:30:00.000Z",
+    "cartId": "s_8yzDNIZb5mJ7BgjKaEC",
+    "customerName": "Dar Rehan Rasool",
+    "comment": "Wallahi Amazing Product and Service Habibi pick up 5:00 am",
+    "items": [
+      {
+        "id": 432001206,
+        "productId": 1225,
+        "quantity": 2,
+        "name": "Sour Patch Kids",
+        "unitPrice": 2.49,
+        "totalPrice": 4.98
+      }
+    ],
+    "invoice": {
+      "subtotal": 4.98,
+      "tax": 0.40,
+      "total": 5.38,
+      "currency": "USD"
+    }
+  }
+  ```
+
+  **Status:** `401 Unauthorized` (missing or invalid token)
+
+  ```json
+  {
+    "error": "Invalid bearer token."
+  }
+  ```
+
+  **Status:** `404 Not Found` (order does not exist or belongs to another client)
+
+  ```json
+  {
+    "error": "No order with id 'mcW9x25FFp4Xa7ViBQ3A0'."
+  }
+  ```
+
+  ## Notes
+
+  - The `orderId` value (`mcW9x25FFp4Xa7ViBQ3A0`) should be replaced with an actual order ID from your session. Obtain it from `POST /orders` or `GET /orders`.
+  - Omitting `invoice=true` returns the order without the invoice breakdown.
+  - You can only retrieve orders that belong to your authenticated client — attempting to access another client's order returns `404`.
+  - The `{{accessToken}}` variable must be set in your active environment.
+url: '{{address}}/orders/:orderId?invoice=true'
 method: GET
 queryParams:
   - key: invoice
-    value: "true"
+    value: 'true'
 pathVariables:
   - key: orderId
     value: mcW9x25FFp4Xa7ViBQ3A0
 body:
   type: json
-  content: ""
+  content: ''
 auth:
   credentials:
     - key: token
-      value: "{{accessToken}}"
+      value: '{{accessToken}}'
   type: bearer
 order: 4489924102801303

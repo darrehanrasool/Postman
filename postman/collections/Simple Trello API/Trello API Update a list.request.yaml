@@ -1,0 +1,11 @@
+$kind: http-request
+name: Trello API Update a list
+url: "{{address}}1/lists/:id?key={{trellokey}}&token={{trellotoken}}&name=todo"
+method: PUT
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+  name: todo
+pathVariables:
+  id: 69d54b3e1758f4789f27ede7
+order: 4493354845288452

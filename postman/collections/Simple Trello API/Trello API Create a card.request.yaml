@@ -1,0 +1,5 @@
+$kind: http-request
+name: Trello API Create a card
+url: ""
+method: POST
+order: 4494588671987377

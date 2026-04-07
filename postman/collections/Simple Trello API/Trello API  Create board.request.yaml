@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API  Create board
+url: "{{address}}1/boards/?name=Trello
+  Board&key={{trellokey}}&token={{trellotoken}}"
+method: POST
+queryParams:
+  name: Trello Board
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+order: 1143541748944028

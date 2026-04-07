@@ -1,8 +1,66 @@
 $kind: http-request
 name: Store API Get a cart
-url: "{{address}}/carts/:cartId"
+description: |-
+  Retrieves the details of an existing shopping cart, including its items and metadata.
+
+  ## Endpoint
+
+  `GET {{address}}/carts/:cartId`
+
+  Full URL: `https://simple-grocery-store-api.click/carts/s_8yzDNIZb5mJ7BgjKaEC`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  | Variable | Type   | Required | Value in this request | Description                                                                 |
+  |----------|--------|----------|-----------------------|-----------------------------------------------------------------------------|
+  | `cartId` | string | Yes      | `{{cartId}}`          | The unique cart identifier returned when the cart was created via `POST /carts`. |
+
+  ## Query Parameters
+
+  None.
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  {
+    "id": "s_8yzDNIZb5mJ7BgjKaEC",
+    "items": [
+      {
+        "id": 432001206,
+        "productId": 1225,
+        "quantity": 2
+      }
+    ]
+  }
+  ```
+
+  **Status:** `404 Not Found` (when the cart ID does not exist)
+
+  ```json
+  {
+    "error": "No cart with id 'invalid-id'."
+  }
+  ```
+
+  ## Notes
+
+  - The `{{cartId}}` variable is automatically populated if you ran "Store API Create cart" and saved the response using a test script.
+  - Use this request to **verify cart contents** before placing an order.
+  - The `items[].id` field in the response is the `itemId` used in modify, replace, and delete item requests.
+  - For a more focused view of just the items, use "Store API Get cart items" (`GET /carts/:cartId/items`).
+url: '{{address}}/carts/:cartId'
 method: GET
 pathVariables:
   - key: cartId
-    value: "{{cartId}}"
+    value: '{{cartId}}'
 order: 4451641790272401

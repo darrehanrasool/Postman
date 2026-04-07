@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API Delete a board
+url: "{{address}}1/boards/:id?key={{trellokey}}&token={{trellotoken}}"
+method: DELETE
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+pathVariables:
+  id: 69d541d8042730a3438bb6b7
+order: 4387573031951866

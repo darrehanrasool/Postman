@@ -1,6 +1,72 @@
 $kind: http-request
 name: Store API Register a new API client
-url: "{{address}}/api-clients"
+description: |-
+  Registers a new API client with the Simple Grocery Store API and returns a Bearer token (`accessToken`). This token is required for all authenticated endpoints (cart item modifications, orders).
+
+  ## Endpoint
+
+  `POST {{address}}/api-clients`
+
+  Full URL: `https://simple-grocery-store-api.click/api-clients`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible. It is the mechanism by which you *obtain* authentication credentials.
+
+  ## Path Variables
+
+  None.
+
+  ## Query Parameters
+
+  None.
+
+  ## Request Body
+
+  **Content-Type:** `application/json`
+
+  | Field         | Type   | Required | Description                                                                                   |
+  |---------------|--------|----------|-----------------------------------------------------------------------------------------------|
+  | `clientName`  | string | Yes      | A display name for the API client (e.g., your name or application name).                      |
+  | `clientEmail` | string | Yes      | A unique email address for the client. **Each email can only be registered once.** Using an already-registered email will return a `409 Conflict` error. |
+
+  ```json
+  {
+    "clientName": "Dar Rehan Rasool",
+    "clientEmail": "darrehanrasool@gmail.com"
+  }
+  ```
+
+  ## Example Response
+
+  **Status:** `201 Created`
+
+  ```json
+  {
+    "accessToken": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
+  }
+  ```
+
+  **Status:** `409 Conflict` (email already registered)
+
+  ```json
+  {
+    "error": "API client already registered. Try a different email."
+  }
+  ```
+
+  ## Notes
+
+  - **Run this request once** before using any endpoint that requires authentication. You only need to register once per email address.
+  - Save the returned `accessToken` as the `{{accessToken}}` environment variable using a test script:
+    ```javascript
+    const response = pm.response.json();
+    pm.environment.set("accessToken", response.accessToken);
+    ```
+  - The `accessToken` does **not expire** — once registered, you can reuse it across sessions.
+  - If you receive a `409 Conflict`, your email is already registered. Retrieve your existing token or use a different email address.
+  - This token is used as a **Bearer token** in the `Authorization` header for all order and cart-modification endpoints.
+url: '{{address}}/api-clients'
 method: POST
 body:
   type: json

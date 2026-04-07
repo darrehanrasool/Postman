@@ -1,37 +1,105 @@
 $kind: collection
 name: Simple Store API
-description: >-
-  This collection covers the full workflow of the **Simple Grocery Store API** —
-  a REST API available at `https://simple-grocery-store-api.click` that
-  simulates an in-store grocery pick-up ordering system.
+description: |-
+  A complete Postman collection for the **Simple Grocery Store API** — a RESTful API hosted at `https://simple-grocery-store-api.click` that simulates a grocery pick-up ordering system. Use this collection to explore, test, and automate the full end-to-end shopping workflow.
 
+  ## Base URL
 
-  ## What's covered
+  ```
+  https://simple-grocery-store-api.click
+  ```
 
+  Stored as the `{{address}}` collection variable.
 
-  - **Status** – Check whether the API is up and running.
-      
-  - **Products** – Browse the product inventory. Filter by category (e.g.
-  fresh-produce, dairy, coffee), limit the number of results, and check
-  availability.
-      
-  - **Cart** – Create a new cart, add or remove items, update quantities, and
-  retrieve cart contents.
-      
-  - **Orders** – Place an order from a cart, view all orders or a single order,
-  update order details, and delete orders. Order endpoints require
-  authentication.
-      
-  - **Authentication** – Register an API client with a name and email address to
-  receive a bearer token used in the `Authorization` header for protected
-  endpoints.
-      
+  ## End-to-End Workflow
+
+  Follow these steps in order to complete a full shopping flow:
+
+  1. **Check API Status** — `GET /status` — Confirm the API is online before proceeding.
+  2. **Browse Products** — `GET /products` — List available products, filter by category, and check stock.
+  3. **Get a Product** — `GET /products/:productId` — Retrieve full details for a specific product.
+  4. **Create a Cart** — `POST /carts` — Start a new shopping session. Save the returned `cartId`.
+  5. **Add Items to Cart** — `POST /carts/:cartId/items` — Add products to your cart by `productId`.
+  6. **Manage Cart Items** — `GET`, `PATCH`, `PUT`, `DELETE` on `/carts/:cartId/items` — View, update, replace, or remove items.
+  7. **Register an API Client** — `POST /api-clients` — Obtain a `{{accessToken}}` bearer token (required for orders).
+  8. **Create an Order** — `POST /orders` — Convert your cart into a confirmed order. Save the returned `orderId`.
+  9. **Manage Orders** — `GET`, `PATCH`, `DELETE` on `/orders/:orderId` — View, update, or cancel orders.
+
+  ## Resource Groups
+
+  ### Status
+  | Method | Endpoint  | Description                        |
+  |--------|-----------|------------------------------------|
+  | GET    | /status   | Check if the API is up and running |
+
+  ### Products
+  | Method | Endpoint              | Description                                      |
+  |--------|-----------------------|--------------------------------------------------|
+  | GET    | /products             | List all products (supports filtering & limiting)|
+  | GET    | /products/:productId  | Get full details for a single product            |
+
+  ### Cart
+  | Method | Endpoint                        | Description                          |
+  |--------|---------------------------------|--------------------------------------|
+  | POST   | /carts                          | Create a new cart                    |
+  | GET    | /carts/:cartId                  | Get cart metadata                    |
+  | GET    | /carts/:cartId/items            | List all items in the cart           |
+  | POST   | /carts/:cartId/items            | Add a product to the cart            |
+  | PATCH  | /carts/:cartId/items/:itemId    | Partially update an item (quantity)  |
+  | PUT    | /carts/:cartId/items/:itemId    | Replace an item entirely             |
+  | DELETE | /carts/:cartId/items/:itemId    | Remove an item from the cart         |
+
+  ### Authentication
+  | Method | Endpoint      | Description                                          |
+  |--------|---------------|------------------------------------------------------|
+  | POST   | /api-clients  | Register a new API client and receive a bearer token |
+
+  ### Orders *(requires authentication)*
+  | Method | Endpoint              | Description                                      |
+  |--------|-----------------------|--------------------------------------------------|
+  | GET    | /orders               | List all orders for the authenticated client     |
+  | GET    | /orders/:orderId      | Get full details (+ optional invoice) for an order |
+  | POST   | /orders               | Create a new order from a cart                   |
+  | PATCH  | /orders/:orderId      | Partially update an order (name, comment)        |
+  | DELETE | /orders/:orderId      | Permanently delete an order                      |
 
   ## Authentication
 
+  Order endpoints require a **Bearer Token** in the `Authorization` header:
 
-  Endpoints that create or manage orders require a bearer token. Register a new
-  API client via `POST /api-clients` to obtain one.
+  ```
+  Authorization: Bearer {{accessToken}}
+  ```
+
+  To obtain a token, send a `POST /api-clients` request with a unique `clientName` and `clientEmail`. The token is returned once and must be saved — it cannot be retrieved again.
+
+  > The `{{accessToken}}` collection variable is pre-populated for convenience. Replace it with your own token for isolated testing.
+
+  ## Collection Variables
+
+  | Variable      | Description                                      | Example Value                                                      |
+  |---------------|--------------------------------------------------|--------------------------------------------------------------------|
+  | `address`     | Base URL for all requests                        | `https://simple-grocery-store-api.click`                           |
+  | `accessToken` | Bearer token for authenticated order endpoints   | `bc0b0fecb2d79af7aa856c407a849613624344c10a688013a2a3fe3ce8946e03` |
+  | `cartId`      | Active cart ID used across cart/order requests   | `6754-HJQxSPCASdWYyLmR`                                            |
+
+  ## Common Response Codes
+
+  | Status Code | Meaning                                                                 |
+  |-------------|-------------------------------------------------------------------------|
+  | `200 OK`    | Request succeeded, response body contains data                          |
+  | `201 Created` | Resource created successfully (e.g., cart, order)                     |
+  | `204 No Content` | Request succeeded, no response body (e.g., update, delete)        |
+  | `400 Bad Request` | Invalid input, missing required fields, or malformed JSON         |
+  | `401 Unauthorized` | Missing or invalid bearer token                                  |
+  | `404 Not Found` | Resource does not exist or belongs to another client                |
+
+  ## Notes
+
+  - **Cart IDs are session-scoped** — a cart cannot be reused after an order is placed from it.
+  - **Orders are client-scoped** — each API client can only see and manage their own orders.
+  - **The `accessToken` is issued once** — store it securely in your environment variables immediately after registration.
+  - **Dynamic variables** like `{{$randomFullName}}` and `{{$randomEmail}}` are used in some requests to generate realistic test data on each send.
 variables:
   address: https://simple-grocery-store-api.click
   accessToken: bc0b0fecb2d79af7aa856c407a849613624344c10a688013a2a3fe3ce8946e03

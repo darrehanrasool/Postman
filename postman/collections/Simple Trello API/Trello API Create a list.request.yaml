@@ -1,11 +1,10 @@
 $kind: http-request
 name: Trello API Create a list
-url: "{{address}}1/lists?name=Postman
-  Board&idBoard=69d411654d53ea3d624ca212&key={{trellokey}}&token={{trellotoken}\
-  }"
+url: "{{address}}1/lists?name=work&idBoard=69d411654d53ea3d624ca212&key={{trell\
+  okey}}&token={{trellotoken}}"
 method: POST
 queryParams:
-  name: Postman Board
+  name: work
   idBoard: 69d411654d53ea3d624ca212
   key: "{{trellokey}}"
   token: "{{trellotoken}}"

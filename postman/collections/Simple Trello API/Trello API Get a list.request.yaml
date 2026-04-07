@@ -6,5 +6,5 @@ queryParams:
   key: "{{trellokey}}"
   token: "{{trellotoken}}"
 pathVariables:
-  id: 69d54b3e1758f4789f27ede7
+  id: 69d5519b852456ed38598ae6
 order: 4478361534571090

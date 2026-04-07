@@ -1,0 +1,12 @@
+$kind: http-request
+name: Trello API Update a card
+url: "{{address}}1/cards/:id?key={{trellokey}}&token={{trellotoken}}&name=First
+  Task"
+method: PUT
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+  name: First Task
+pathVariables:
+  id: 69d55748dc987b0c748e7863
+order: 4498128675268022

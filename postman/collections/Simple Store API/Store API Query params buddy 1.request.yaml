@@ -1,12 +1,62 @@
 $kind: http-request
 name: Store API Query params buddy 1
-url: "{{address}}/products?category=candy&results =1&available=true"
+description: |-
+  Demonstrates how to use query parameters with the GET /products endpoint. This example filters products to show only available candy items, limited to 1 result.
+
+  ## Endpoint
+
+  `GET {{address}}/products`
+
+  Full URL: `https://simple-grocery-store-api.click/products?category=candy&results=1&available=true`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  None.
+
+  ## Query Parameters
+
+  | Parameter   | Type    | Required | Value in this request | Description                                                        |
+  |-------------|---------|----------|-----------------------|--------------------------------------------------------------------|
+  | `category`  | string  | No       | `candy`               | Filters results to the `candy` category only.                      |
+  | `results`   | integer | No       | `1`                   | Limits the response to 1 product. Valid range: `1`–`20`.           |
+  | `available` | boolean | No       | `true`                | Returns only products that are currently in stock.                 |
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  [
+    {
+      "id": 1225,
+      "category": "candy",
+      "name": "Sour Patch Kids",
+      "inStock": true
+    }
+  ]
+  ```
+
+  ## Notes
+
+  - This request is a **companion example** to "Store API Products" — it shows query parameters in action.
+  - Note the intentional trailing space in the `results ` key name — this is a common gotcha when copying parameters. Ensure your key names have no extra whitespace in production use.
+  - Try swapping `category` to other values like `dairy`, `beverages`, or `frozen` to explore different product categories.
+  - Combine with `available=false` to see out-of-stock items instead.
+url: '{{address}}/products?category=candy&results =1&available=true'
 method: GET
 queryParams:
   - key: category
     value: candy
-  - key: "results "
-    value: "1"
+  - key: 'results '
+    value: '1'
   - key: available
-    value: "true"
+    value: 'true'
 order: 4331312146031991

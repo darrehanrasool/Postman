@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API Get single board
+url: "{{address}}1/boards/:id?key={{trellokey}}&token={{trellotoken}}"
+method: GET
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+pathVariables:
+  id: 69d411654d53ea3d624ca212
+order: 4307874816515147

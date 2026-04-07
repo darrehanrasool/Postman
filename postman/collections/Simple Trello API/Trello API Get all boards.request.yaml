@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API Get all boards
+url: "{{address}}1/members/me/boards?key={{trellokey}}&token={{trellotoken}}"
+method: GET
+queryParams:
+  - key: key
+    value: "{{trellokey}}"
+  - key: token
+    value: "{{trellotoken}}"
+order: 3440089638659563

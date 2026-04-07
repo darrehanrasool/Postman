@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API Get the Board a List is on
+url: https://api.trello.com/1/lists/{id}/board?key=APIKey&token=APIToken
+method: GET
+queryParams:
+  - key: key
+    value: APIKey
+  - key: token
+    value: APIToken
+order: 4487021132756674

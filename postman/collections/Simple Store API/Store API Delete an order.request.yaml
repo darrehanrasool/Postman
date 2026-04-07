@@ -1,6 +1,63 @@
 $kind: http-request
 name: Store API Delete an order
-url: "{{address}}/orders/:orderId"
+description: |-
+  Permanently deletes an existing order by its ID. This action is irreversible — once deleted, the order cannot be recovered.
+
+  ## Endpoint
+
+  `DELETE {{address}}/orders/:orderId`
+
+  Full URL: `https://simple-grocery-store-api.click/orders/2TO8iiLMS4-oV-AYFaTNl`
+
+  ## Authentication
+
+  **Bearer Token** — required. Pass the `{{accessToken}}` variable as a Bearer token in the `Authorization` header.
+
+  > You can only delete orders that belong to your authenticated client.
+
+  ## Path Variables
+
+  | Variable  | Type   | Required | Value in this request    | Description                                                              |
+  |-----------|--------|----------|--------------------------|--------------------------------------------------------------------------|
+  | `orderId` | string | Yes      | `2TO8iiLMS4-oV-AYFaTNl`  | The unique order identifier. Obtain from `POST /orders` or `GET /orders`. |
+
+  ## Query Parameters
+
+  None.
+
+  ## Request Body
+
+  None — DELETE requests do not include a request body.
+
+  ## Example Response
+
+  **Status:** `204 No Content` (deletion successful — no response body)
+
+  **Status:** `401 Unauthorized` (missing or invalid token)
+
+  ```json
+  {
+    "error": "Invalid bearer token."
+  }
+  ```
+
+  **Status:** `404 Not Found` (order does not exist or belongs to another client)
+
+  ```json
+  {
+    "error": "No order with id '2TO8iiLMS4-oV-AYFaTNl'."
+  }
+  ```
+
+  ## Notes
+
+  - A `204 No Content` response with **no body** confirms the order was successfully deleted — this is expected behavior for DELETE.
+  - **This action is permanent and irreversible.** There is no undo — ensure you are targeting the correct `orderId` before sending.
+  - The `orderId` value (`2TO8iiLMS4-oV-AYFaTNl`) should be replaced with an actual order ID from your session.
+  - You can only delete orders that belong to your authenticated client — attempting to delete another client's order returns `404`.
+  - The `{{accessToken}}` variable must be set in your active environment.
+  - After deletion, a subsequent `GET /orders/:orderId` for the same ID will return `404`.
+url: '{{address}}/orders/:orderId'
 method: DELETE
 pathVariables:
   - key: orderId
@@ -8,6 +65,6 @@ pathVariables:
 auth:
   credentials:
     - key: token
-      value: "{{accessToken}}"
+      value: '{{accessToken}}'
   type: bearer
 order: 4502975617069214

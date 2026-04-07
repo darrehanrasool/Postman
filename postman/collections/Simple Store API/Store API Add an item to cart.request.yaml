@@ -1,10 +1,79 @@
 $kind: http-request
 name: Store API Add an item to cart
-url: "{{address}}/carts/:cartId/items"
+description: |-
+  Adds a product to an existing shopping cart. Returns the unique `itemId` for the newly added cart item.
+
+  ## Endpoint
+
+  `POST {{address}}/carts/:cartId/items`
+
+  Full URL: `https://simple-grocery-store-api.click/carts/s_8yzDNIZb5mJ7BgjKaEC/items`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  | Variable | Type   | Required | Value in this request | Description                                                                 |
+  |----------|--------|----------|-----------------------|-----------------------------------------------------------------------------|
+  | `cartId` | string | Yes      | `{{cartId}}`          | The unique cart identifier returned when the cart was created via `POST /carts`. |
+
+  ## Query Parameters
+
+  None.
+
+  ## Request Body
+
+  **Content-Type:** `application/json`
+
+  | Field       | Type    | Required | Description                                                                 |
+  |-------------|---------|----------|-----------------------------------------------------------------------------|
+  | `productId` | integer | Yes      | The ID of the product to add. Obtain from `GET /products`.                  |
+  | `quantity`  | integer | No       | Number of units to add. Defaults to `1` if omitted. Must be a positive integer. |
+
+  ```json
+  {
+    "productId": 1225,
+    "quantity": 2
+  }
+  ```
+
+  ## Example Response
+
+  **Status:** `201 Created`
+
+  ```json
+  {
+    "created": true,
+    "itemId": 432001206
+  }
+  ```
+
+  **Status:** `400 Bad Request` (missing or invalid productId)
+
+  ```json
+  {
+    "error": "Invalid or missing productId."
+  }
+  ```
+
+  ## Notes
+
+  - The `itemId` returned in the response is required for modifying (`PATCH`), replacing (`PUT`), or deleting (`DELETE`) the item later.
+  - Save the `itemId` as an environment variable using a test script:
+    ```javascript
+    const response = pm.response.json();
+    pm.environment.set("itemId", response.itemId);
+    ```
+  - You can add the **same product multiple times** — each call creates a separate cart item entry.
+  - Ensure the product is in stock (`inStock: true`) before adding it; out-of-stock products may be rejected.
+  - The `{{cartId}}` variable must be set in your active environment before sending this request.
+url: '{{address}}/carts/:cartId/items'
 method: POST
 pathVariables:
   - key: cartId
-    value: "{{cartId}}"
+    value: '{{cartId}}'
 body:
   type: json
   content: |-

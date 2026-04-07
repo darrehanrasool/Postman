@@ -1,0 +1,10 @@
+$kind: http-request
+name: Trello API Delete a card
+url: "{{address}}1/cards/:id?key={{trellokey}}&token={{trellotoken}}"
+method: DELETE
+queryParams:
+  key: "{{trellokey}}"
+  token: "{{trellotoken}}"
+pathVariables:
+  id: 69d558ad1b7cf0db7cb03f51
+order: 4498190458431186

@@ -1,8 +1,65 @@
 $kind: http-request
 name: Store API Get a product
-url: "{{address}}/products/:productId"
+description: |-
+  Retrieves the full details of a single product by its unique ID.
+
+  ## Endpoint
+
+  `GET {{address}}/products/:productId`
+
+  Full URL: `https://simple-grocery-store-api.click/products/1225`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  | Variable    | Type    | Required | Value in this request | Description                                        |
+  |-------------|---------|----------|-----------------------|----------------------------------------------------|
+  | `productId` | integer | Yes      | `1225`                | The unique numeric identifier of the product.      |
+
+  ## Query Parameters
+
+  None (see "Store API Query params buddy 2" for an example with `product-label=true`).
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  {
+    "id": 1225,
+    "category": "candy",
+    "name": "Sour Patch Kids",
+    "manufacturer": "Mondelez International",
+    "price": 2.49,
+    "currentStock": 150,
+    "inStock": true
+  }
+  ```
+
+  **Status:** `404 Not Found` (when the product ID does not exist)
+
+  ```json
+  {
+    "error": "No product with id 9999."
+  }
+  ```
+
+  ## Notes
+
+  - Obtain valid `productId` values by first calling `GET /products` (see "Store API Products").
+  - The `id` field in the product list response maps directly to the `productId` path variable here.
+  - Use the `productId` when adding items to a cart via `POST /carts/:cartId/items`.
+  - To also retrieve product label/packaging information, append `?product-label=true` to the URL (see "Store API Query params buddy 2").
+url: '{{address}}/products/:productId'
 method: GET
 pathVariables:
   - key: productId
-    value: "1225"
+    value: '1225'
 order: 4288551216865500

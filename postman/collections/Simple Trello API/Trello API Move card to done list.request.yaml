@@ -1,13 +1,13 @@
 $kind: http-request
-name: Trello API Update a card
+name: Trello API Move card to done list
 url: "{{address}}1/cards/:id?key={{trellokey}}&token={{trellotoken}}&name=Fourth
-  Task update&idBoard={{idBoard}}"
+  Task update&idList=69d61e4799234a5e7f85451a"
 method: PUT
 queryParams:
   key: "{{trellokey}}"
   token: "{{trellotoken}}"
   name: Fourth Task update
-  idBoard: "{{idBoard}}"
+  idList: 69d61e4799234a5e7f85451a
 pathVariables:
   id: 69d61f3cec584992bc25984b
-order: 4497647207339695
+order: 4498153099453198

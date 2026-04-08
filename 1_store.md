@@ -405,11 +405,11 @@ Example request body:
 
 Some endpoints may require authentication. To submit or view an order, you need to register your API client and obtain an access token.
 
-The endpoints that require authentication expect a bearer token sent in the `Authorization` header.
+The endpoints that require authentication expect a bearer token sent in the `Authorization` header. In Postman, store the token in a variable and reference it instead of using a literal value.
 
 Example:
 
-`Authorization: Bearer YOUR TOKEN`
+`Authorization: Bearer {{accessToken}}`
 
 ### Register a new API client
 
@@ -443,4 +443,4 @@ Example request body:
 }
 ```
 
-The response body will contain the access token.
+The response body will contain the access token. Save that value in a Postman variable such as `{{accessToken}}` rather than pasting it directly into requests or documentation.

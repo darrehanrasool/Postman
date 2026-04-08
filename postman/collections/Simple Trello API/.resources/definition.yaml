@@ -4,3 +4,4 @@ variables:
   address: https://api.trello.com/
   trellokey: 199de49e452a01f237d8521f526b56ab
   trellotoken: ATTA5fe791e29664bfaf706cfb1abe82405359ef773d51bf4ce916ef16423d867a19D8D3B33B
+  idBoard: 69d61d5bc4af27ba21ee9f0d

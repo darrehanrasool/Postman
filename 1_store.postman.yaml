@@ -361,11 +361,11 @@ paths:
     description: |
       Some endpoints may require authentication. To submit or view an order, you need to register your API client and obtain an access token.
 
-      The endpoints that require authentication expect a bearer token sent in the Authorization header.
+      The endpoints that require authentication expect a bearer token sent in the Authorization header. In Postman, store the token in a variable and reference it instead of using a literal value.
 
       Example:
 
-      Authorization: Bearer YOUR TOKEN
+      Authorization: Bearer {{accessToken}}
     post:
       tags: ["authentication"]
       summary: Register a new API client
@@ -392,7 +392,7 @@ paths:
                 properties:
                   accessToken: { "type": "string" }
               example: {
-                "accessToken": "8363b83fa762c34055b7d8135e2c521fc9fa5b743b140e05ca178b62a21ba9f2"
+                "accessToken": "{{accessToken}}"
               }
         "400": { "$ref": "#/components/responses/400Response" }
         "409":
@@ -469,11 +469,11 @@ components:
       required: true
     authorization:
       name: Authorization
-      description: The bearer token of the API client.
+      description: The bearer token of the API client. Use a Postman variable such as {{accessToken}} instead of a literal token value.
       in: header
       schema: { type: "string" }
       required: true
-      example: "150b3447-7d12-426e-ba77-a1203d28f8a5@example.com"
+      example: "Bearer {{accessToken}}"
   responses: 
     401Response:
       description: Indicates that the request has not been authenticated. Check the response body for additional details.
@@ -494,7 +494,7 @@ components:
     bearer:
       type: http
       scheme: bearer
-      description: Use /api-clients endpoint to get token
+      description: Use /api-clients endpoint to get a token, then store it in a Postman variable such as {{accessToken}}.
 tags:
   - name: status
   - name: product

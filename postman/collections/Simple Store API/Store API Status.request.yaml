@@ -1,46 +1,88 @@
 $kind: http-request
 name: Store API Status
-description: |-
+description: >-
   Checks whether the Simple Grocery Store API is up and running.
+
 
   ## Endpoint
 
+
   `GET {{address}}/status`
+
 
   Full URL: `https://simple-grocery-store-api.click/status`
 
+
   ## Authentication
+
 
   **None** — this endpoint is publicly accessible and requires no credentials.
 
+
   ## Path Variables
 
+
   None.
+
 
   ## Query Parameters
 
+
   None.
+
 
   ## Request Body
 
+
   None.
+
 
   ## Example Response
 
+
   **Status:** `200 OK`
 
+
   ```json
+
   {
     "status": "UP"
   }
+
   ```
+
 
   ## Notes
 
-  - Use this request as a **health check** before running any other requests in the collection.
-  - If the response is not `{"status": "UP"}`, the API may be temporarily unavailable — wait a moment and retry.
-  - This is a great candidate for a **Postman Monitor** to track API uptime over time.
-  - No environment variables are required beyond `{{address}}`, which should be set to `https://simple-grocery-store-api.click`.
-url: '{{address}}/status'
+
+  - Use this request as a **health check** before running any other requests in
+  the collection.
+
+  - If the response is not `{"status": "UP"}`, the API may be temporarily
+  unavailable — wait a moment and retry.
+
+  - This is a great candidate for a **Postman Monitor** to track API uptime over
+  time.
+
+  - No environment variables are required beyond `{{address}}`, which should be
+  set to `https://simple-grocery-store-api.click`.
+url: "{{address}}/status"
 method: GET
+scripts:
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request")
+      console.clear();
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      console.log("After the Test");
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Status should be UP", function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData.status).to.be.eql('UP');
+      });
+    language: text/javascript
 order: 1775136387268

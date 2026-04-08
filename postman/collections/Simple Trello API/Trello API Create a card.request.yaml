@@ -1,11 +1,11 @@
 $kind: http-request
 name: Trello API Create a card
-url: "{{address}}1/cards?idList=69d5519b852456ed38598ae6&key={{trellokey}}&toke\
-  n={{trellotoken}}&name=Third Task"
+url: "{{address}}1/cards?idList=69d61e39ecbe398f4292349e&key={{trellokey}}&toke\
+  n={{trellotoken}}&name=Fourth Task"
 method: POST
 queryParams:
-  idList: 69d5519b852456ed38598ae6
+  idList: 69d61e39ecbe398f4292349e
   key: "{{trellokey}}"
   token: "{{trellotoken}}"
-  name: Third Task
+  name: Fourth Task
 order: 4494588671987377

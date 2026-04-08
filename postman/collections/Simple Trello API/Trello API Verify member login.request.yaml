@@ -9,4 +9,5 @@ auth:
     key: ""
     value: ""
   type: apikey
+examples: .resources/Trello API Verify member login.resources/examples
 order: 1775507965092

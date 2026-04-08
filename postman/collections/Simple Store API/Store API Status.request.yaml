@@ -75,8 +75,8 @@ scripts:
       console.clear();
     language: text/javascript
   - type: afterResponse
-    code: |-
-      console.log("After the Test");
+    code: |
+      console.log("After the Response");
       pm.test("Status code is 200", function () {
           pm.response.to.have.status(200);
       });

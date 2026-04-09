@@ -1,0 +1,22 @@
+$kind: http-request
+name: Working with Data
+url: https://f4dc5b11334f49df94de18b4cbaee1ea.api.mockbin.io/
+method: GET
+scripts:
+  - type: beforeRequest
+    code: |-
+      console.log('Before request buddy');
+      console.clear();
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      console.log('After response buddy');
+      pm.test("manipulate json object ",()=>{
+         let data=pm.response.json();
+         let value= data.Response.Data[0].Results[1].Address.Active;
+         console.log(value);
+         pm.expect(value).to.be.eql(true);
+
+      })
+    language: text/javascript
+order: 4503079289883136

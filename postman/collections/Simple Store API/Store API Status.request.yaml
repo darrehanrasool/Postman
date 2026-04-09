@@ -75,14 +75,16 @@ scripts:
       console.clear();
     language: text/javascript
   - type: afterResponse
-    code: |
+    code: |-
       console.log("After the Response");
-      pm.test("Status code is 200", function () {
+
+      pm.test("status should be UP buddy",()=>{
+          let output=pm.response.json();
+          pm.expect(output.status).to.be.equal('UP');
+      })
+      pm.test("status code should be 200 ok",()=>{
           pm.response.to.have.status(200);
-      });
-      pm.test("Status should be UP", function () {
-          var jsonData = pm.response.json();
-          pm.expect(jsonData.status).to.be.eql('UP');
-      });
+
+      })
     language: text/javascript
 order: 1775136387268

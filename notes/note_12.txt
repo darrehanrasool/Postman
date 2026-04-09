@@ -1,0 +1,23 @@
+================ REAL API FLOW ================
+
+Step 1:
+GET /products
+
+Step 2:
+POST /cart
+
+Step 3:
+Add item to cart
+
+Step 4:
+POST /orders
+
+--------------------------------------------------
+
+Happy Path:
+Valid flow → success
+
+Negative:
+Invalid token → error
+
+==================================================

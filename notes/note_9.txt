@@ -1,0 +1,20 @@
+================ JSON HANDLING ================
+
+JSON:
+JavaScript Object Notation
+
+Example:
+{
+  "cartId": "abc123",
+  "customerName": "{{$randomFullName}}",
+  "comment": "Amazing Product"
+}
+
+--------------------------------------------------
+
+Dynamic Values:
+{{$randomFullName}}
+
+Used for testing different inputs.
+
+==================================================

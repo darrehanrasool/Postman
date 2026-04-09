@@ -1,0 +1,30 @@
+================ REQUEST & RESPONSE ================
+
+Request:
+Data sent to server
+
+Includes:
+- URL
+- Method
+- Headers
+- Body
+
+--------------------------------------------------
+
+Response:
+Data returned from server
+
+Includes:
+- Status Code
+- Response Body
+- Headers
+
+--------------------------------------------------
+
+Example:
+{
+  "cartId": "123",
+  "customerName": "Rehan"
+}
+
+==================================================

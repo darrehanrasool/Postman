@@ -1,0 +1,14 @@
+================ CASE SENSITIVITY ================
+
+Definition:
+API distinguishes between uppercase and lowercase.
+
+Example:
+token ≠ Token
+
+--------------------------------------------------
+
+Impact:
+Wrong case → API error
+
+==================================================

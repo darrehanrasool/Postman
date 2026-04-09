@@ -1,0 +1,23 @@
+================ PARAMETERS ================
+
+Path Parameter:
+Used inside URL path
+
+Example:
+/products/:productId
+
+--------------------------------------------------
+
+Query Parameter:
+Used after ?
+
+Example:
+/products?category=coffee&limit=5
+
+--------------------------------------------------
+
+Difference:
+Path → specific resource
+Query → filtering/searching
+
+==================================================

@@ -1,0 +1,27 @@
+================ INTERVIEW Q&A ================
+
+Q: What is API?
+A: API allows communication between systems.
+
+--------------------------------------------------
+
+Q: What is endpoint?
+A: Specific path of API.
+
+--------------------------------------------------
+
+Q: What is difference between PUT and PATCH?
+A: PUT → full update
+   PATCH → partial update
+
+--------------------------------------------------
+
+Q: What is boundary testing?
+A: Testing at minimum and maximum limits.
+
+--------------------------------------------------
+
+Q: What is negative testing?
+A: Testing with invalid inputs.
+
+==================================================

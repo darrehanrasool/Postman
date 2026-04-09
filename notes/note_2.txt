@@ -1,0 +1,25 @@
+================ HTTP METHODS ================
+
+GET:
+Retrieve data
+
+POST:
+Create new data
+
+PUT:
+Update entire resource
+
+PATCH:
+Update partial resource
+
+DELETE:
+Delete resource
+
+--------------------------------------------------
+
+Example:
+GET    /products
+POST   /cart
+PATCH  /cart/123
+
+==================================================

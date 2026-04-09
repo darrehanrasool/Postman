@@ -1,0 +1,29 @@
+================ POSTMAN BASICS ================
+
+Postman:
+Tool used for API testing.
+
+--------------------------------------------------
+
+Agents:
+
+Cloud Agent:
+- Limited requests
+- Runs on Postman server
+
+Desktop Agent:
+- Runs locally
+- Preferred for testing
+
+Browser Agent:
+- Not compatible with all APIs
+
+--------------------------------------------------
+
+Case Sensitivity:
+Postman is case sensitive.
+
+Example:
+Token ≠ token
+
+==================================================

@@ -1,0 +1,35 @@
+================ API BASICS ================
+
+API:
+API (Application Programming Interface) allows communication between two systems.
+
+URL:
+Uniform Resource Locator – address of API.
+
+Example:
+https://api.example.com/users
+
+Base URL:
+Main part of API.
+Example:
+https://simple-grocery-store-api.click
+
+Endpoint:
+/status, /users, /cart
+
+Full URL:
+Base URL + Endpoint
+
+--------------------------------------------------
+
+Data Formats:
+JSON – Most commonly used
+XML  – Older format
+YAML – Config-based format
+
+--------------------------------------------------
+
+HTML:
+Used for web pages, not APIs.
+
+==================================================

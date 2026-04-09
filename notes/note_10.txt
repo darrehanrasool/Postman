@@ -1,0 +1,18 @@
+================ AUTHENTICATION ================
+
+Authentication:
+Verifies user identity
+
+--------------------------------------------------
+
+Types:
+- API Key
+- Bearer Token
+- Basic Auth
+
+--------------------------------------------------
+
+Example:
+Authorization: Bearer token123
+
+==================================================

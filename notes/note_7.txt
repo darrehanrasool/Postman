@@ -1,0 +1,36 @@
+================ API TESTING TYPES ================
+
+Functional Testing:
+Checks API functionality.
+
+Includes:
+- Status codes
+- Response validation
+- Business logic
+
+--------------------------------------------------
+
+Happy Path Testing:
+Valid inputs and expected flow.
+
+Example:
+Add to cart → Place order
+
+--------------------------------------------------
+
+Negative Testing:
+Invalid inputs
+
+Example:
+- Missing fields
+- Invalid token
+
+--------------------------------------------------
+
+Boundary Testing:
+Check limits
+
+Example:
+Password length 8–16
+
+==================================================

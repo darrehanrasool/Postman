@@ -1,0 +1,13 @@
+$kind: collection
+name: Negative Path Testing
+scripts:
+  - type: http:beforeRequest
+    code: |
+      console.clear()
+      console.log("Folder level Test 401 Added")
+  - type: http:afterResponse
+    code: |-
+      pm.test("status code should be 401",()=>{
+          pm.response.to.have.status(401);
+      })
+order: 638363374714879

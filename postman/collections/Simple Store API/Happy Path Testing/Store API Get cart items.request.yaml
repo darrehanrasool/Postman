@@ -64,9 +64,16 @@ description: |-
   - The `id` field for each item is the `itemId` required by the modify (`PATCH`), replace (`PUT`), and delete (`DELETE`) item endpoints.
   - An empty array `[]` is returned when the cart exists but has no items — this is not an error.
   - The `{{cartId}}` variable must be set in your active environment (populated by running "Store API Create cart").
-url: '{{address}}/carts/:cartId/items'
+url: "{{address}}/carts/:cartId/items"
 method: GET
 pathVariables:
-  - key: cartId
-    value: '{{cartId}}'
-order: 4470387521551551
+  cartId: "{{cartId}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 200",()=>{
+          pm.response.to.have.status(200);
+      })
+    language: text/javascript
+order: 4446174773375848

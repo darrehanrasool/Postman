@@ -83,20 +83,30 @@ description: |-
   - Omitting `invoice=true` returns the order without the invoice breakdown.
   - You can only retrieve orders that belong to your authenticated client — attempting to access another client's order returns `404`.
   - The `{{accessToken}}` variable must be set in your active environment.
-url: '{{address}}/orders/:orderId?invoice=true'
+url: "{{address}}/orders/:orderId?invoice=true"
 method: GET
 queryParams:
-  - key: invoice
-    value: 'true'
+  invoice: "true"
 pathVariables:
-  - key: orderId
-    value: mcW9x25FFp4Xa7ViBQ3A0
+  orderId: UK8eVRS1aUMQLbfshyyLN
 body:
   type: json
-  content: ''
+  content: ""
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4489924102801303
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 200 ",()=>{
+          pm.response.to.have.status(200);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503597704927008

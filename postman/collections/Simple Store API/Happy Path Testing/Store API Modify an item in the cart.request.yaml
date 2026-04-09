@@ -61,22 +61,32 @@ description: |-
   - The `{{accessToken}}` variable must be set in your active environment. Run "Store API Register a new API client" first if needed.
   - The `itemId` (`432001206`) should be replaced with the actual item ID from your cart session.
   - To change the product itself (not just the quantity), use the `PUT` endpoint ("Store API Replace an item in the cart").
-url: '{{address}}/carts/:cartId/items/:itemId'
+url: "{{address}}/carts/:cartId/items/:itemId"
 method: PATCH
 pathVariables:
-  - key: cartId
-    value: '{{cartId}}'
-  - key: itemId
-    value: '432001206'
+  cartId: "{{cartId}}"
+  itemId: "984013221"
 body:
   type: json
   content: |-
     {
-        "quantity": 3
+        "quantity": 4
     }
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4482341785174366
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 204",()=>{
+          pm.response.to.have.status(204);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4495374440343735

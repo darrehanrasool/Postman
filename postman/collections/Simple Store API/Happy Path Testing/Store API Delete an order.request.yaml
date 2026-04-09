@@ -57,14 +57,25 @@ description: |-
   - You can only delete orders that belong to your authenticated client — attempting to delete another client's order returns `404`.
   - The `{{accessToken}}` variable must be set in your active environment.
   - After deletion, a subsequent `GET /orders/:orderId` for the same ID will return `404`.
-url: '{{address}}/orders/:orderId'
+url: "{{address}}/orders/:orderId"
 method: DELETE
 pathVariables:
-  - key: orderId
-    value: 2TO8iiLMS4-oV-AYFaTNl
+  orderId: UK8eVRS1aUMQLbfshyyLN
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4502975617069214
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 200 ",()=>{
+          pm.response.to.have.status(204);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503599526407358

@@ -7,8 +7,7 @@ workspace:
 cloudResources:
   environments:
     ../postman/environments/darrehanrasool.environment.yaml: 4602e6d1-40a6-4686-af02-c0527dcecc39
-  collections:
-    ../postman/collections/Simple Grocery Store API: 31214239-ff7f83bd-ee67-47d6-8c0a-af0b9c884352
+  collections: {}
 
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:

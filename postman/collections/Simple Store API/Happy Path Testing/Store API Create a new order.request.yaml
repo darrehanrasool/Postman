@@ -80,19 +80,31 @@ description: |-
   - The `cartId` in this example (`s_8yzDNIZb5mJ7BgjKaEC`) should be replaced with your actual `{{cartId}}` variable value.
   - Once an order is created, the cart is consumed — you cannot reuse the same `cartId` for another order.
   - The `{{accessToken}}` variable must be set in your active environment.
-url: '{{address}}/orders'
+url: "{{address}}/orders"
 method: POST
 body:
   type: json
   content: |-
     {
-        "cartId":"s_8yzDNIZb5mJ7BgjKaEC",
+        "cartId":"{{cartId}}",
         "customerName": "{{$randomFullName}}",
         "comment":"Wallahi Amazing Product and Service Habibipick up 5:00 am 🫥"
     }
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4490010703497195
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 201",()=>{
+          pm.response.to.have.status(201);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503587109501997

@@ -63,23 +63,33 @@ description: |-
   - A `204 No Content` response with no body is the expected success response.
   - The `{{accessToken}}` variable must be set in your active environment. Run "Store API Register a new API client" first if needed.
   - The `productId` `1710` in this example refers to a dairy product — replace it with any valid product ID from `GET /products`.
-url: '{{address}}/carts/:cartId/items/:itemId'
+url: "{{address}}/carts/:cartId/items/:itemId"
 method: PUT
 pathVariables:
-  - key: cartId
-    value: '{{cartId}}'
-  - key: itemId
-    value: '432001206'
+  cartId: "{{cartId}}"
+  itemId: "852096932"
 body:
   type: json
   content: |-
     {
-        "productId": 1710,
-        "quantity": 2
+        "productId": 3674,
+        "quantity": 1
     }
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4483680042576095
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 204 ",()=>{
+          pm.response.to.have.status(204);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503515703294447

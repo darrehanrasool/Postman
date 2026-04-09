@@ -1,0 +1,12 @@
+$kind: collection
+name: Missing Header
+scripts:
+  - type: http:afterResponse
+    code: |-
+      pm.test("Authorization Error check ",()=>{
+          let response=pm.response.json();
+          pm.expect(response.error).to.eql("Missing Authorization header.");
+      })
+  - type: http:beforeRequest
+    code: console.log("Folder level Test Missing Header Added")
+order: 209862101303295

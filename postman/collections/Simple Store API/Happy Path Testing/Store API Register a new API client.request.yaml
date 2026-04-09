@@ -66,7 +66,7 @@ description: |-
   - The `accessToken` does **not expire** — once registered, you can reuse it across sessions.
   - If you receive a `409 Conflict`, your email is already registered. Retrieve your existing token or use a different email address.
   - This token is used as a **Bearer token** in the `Authorization` header for all order and cart-modification endpoints.
-url: '{{address}}/api-clients'
+url: "{{address}}/api-clients"
 method: POST
 body:
   type: json
@@ -75,4 +75,17 @@ body:
         "clientName": "Dar Rehan Rasool",
         "clientEmail": "darrehanrasool@gmail.com"
     }
-order: 4489286800122972
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 409",()=>{
+          pm.response.to.have.status(409);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503584406454458

@@ -1,0 +1,12 @@
+$kind: collection
+name: Missing Token
+scripts:
+  - type: http:afterResponse
+    code: |-
+      pm.test("Authorization Error check ",()=>{
+          let response=pm.response.json();
+          pm.expect(response.error).to.eql("Invalid bearer token.");
+      })
+  - type: http:beforeRequest
+    code: console.log("Folder level Test Missing Token Added")
+order: 2138758023479295

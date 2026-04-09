@@ -69,16 +69,28 @@ description: |-
   - You can add the **same product multiple times** — each call creates a separate cart item entry.
   - Ensure the product is in stock (`inStock: true`) before adding it; out-of-stock products may be rejected.
   - The `{{cartId}}` variable must be set in your active environment before sending this request.
-url: '{{address}}/carts/:cartId/items'
+url: "{{address}}/carts/:cartId/items"
 method: POST
 pathVariables:
-  - key: cartId
-    value: '{{cartId}}'
+  cartId: "{{cartId}}"
 body:
   type: json
   content: |-
     {
-        "productId": 1225,
-        "quantity": 2
+        "productId": 2177,
+        "quantity": 1
     }
-order: 4477579036489192
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 201",()=>{
+          pm.response.to.have.status(201);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4446318938626942

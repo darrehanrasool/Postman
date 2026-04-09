@@ -78,21 +78,32 @@ description: |-
   - The `orderId` value (`UK8eVRS1aUMQLbfshyyLN`) should be replaced with an actual order ID from your session.
   - The `{{accessToken}}` variable must be set in your active environment.
   - To verify the update was applied, follow up with a `GET /orders/:orderId` request.
-url: '{{address}}/orders/:orderId'
+url: "{{address}}/orders/:orderId"
 method: PATCH
 pathVariables:
-  - key: orderId
-    value: UK8eVRS1aUMQLbfshyyLN
+  orderId: UK8eVRS1aUMQLbfshyyLN
 body:
   type: json
   content: |-
     {
         "customerName": "Dar Rehan Rasool",
-        "comment":"Wallahi Amazing Product and Service Habibi pick up 4:00 am"
+        "comment":"Wallahi Amazing Product "
     }
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4502659023009917
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 204 ",()=>{
+          pm.response.to.have.status(204);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503599500543069

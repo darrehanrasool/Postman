@@ -57,12 +57,23 @@ description: |-
   - The `productId` value (`1225`) can be replaced with any valid product ID obtained from the `GET /products` endpoint.
   - Omitting `product-label=true` (or setting it to `false`) will return the standard product object without the label details.
   - This pattern — path variable for resource identity + query param for response shaping — is a common REST API design pattern.
-url: '{{address}}/products/:productId?product-label=true'
+url: "{{address}}/products/:productId?product-label=true"
 method: GET
 queryParams:
-  - key: product-label
-    value: 'true'
+  product-label: "true"
 pathVariables:
-  - key: productId
-    value: '1225'
-order: 4404736425826138
+  productId: "1225"
+scripts:
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 200 ",()=>{
+          pm.response.to.have.status(200);
+      })
+    language: text/javascript
+order: 4061704043448777

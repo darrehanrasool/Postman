@@ -1,0 +1,91 @@
+$kind: http-request
+name: Store API Create cart
+description: >-
+  Creates a new shopping cart session. Returns a unique `cartId` that must be
+  saved and used in all subsequent cart and order operations.
+
+
+  ## Endpoint
+
+
+  `POST {{address}}/carts`
+
+
+  Full URL: `https://simple-grocery-store-api.click/carts`
+
+
+  ## Authentication
+
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+
+  ## Path Variables
+
+
+  None.
+
+
+  ## Query Parameters
+
+
+  None.
+
+
+  ## Request Body
+
+
+  None — no request body is required or accepted.
+
+
+  ## Example Response
+
+
+  **Status:** `201 Created`
+
+
+  ```json
+
+  {
+    "created": true,
+    "cartId": "s_8yzDNIZb5mJ7BgjKaEC"
+  }
+
+  ```
+
+
+  ## Notes
+
+
+  - **This is the starting point** for the shopping workflow. Always create a
+  cart before adding items or placing an order.
+
+  - The `cartId` returned in the response must be saved as the `{{cartId}}`
+  environment variable so it can be referenced in subsequent requests.
+
+  - You can automate saving the `cartId` by adding a test script:
+    ```javascript
+    const response = pm.response.json();
+    pm.environment.set("cartId", response.cartId);
+    ```
+  - Each call to this endpoint creates a **new, empty cart** — do not call it
+  multiple times unless you intend to start a fresh cart.
+
+  - Cart IDs are single-use and tied to a session; they are not linked to a
+  registered API client.
+url: "{{address}}/carts"
+method: POST
+scripts:
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 201",()=>{
+          pm.response.to.have.status(201);
+      })
+    language: text/javascript
+order: 4289338052323584

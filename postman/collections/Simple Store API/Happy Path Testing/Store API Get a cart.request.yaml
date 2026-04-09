@@ -58,9 +58,21 @@ description: |-
   - Use this request to **verify cart contents** before placing an order.
   - The `items[].id` field in the response is the `itemId` used in modify, replace, and delete item requests.
   - For a more focused view of just the items, use "Store API Get cart items" (`GET /carts/:cartId/items`).
-url: '{{address}}/carts/:cartId'
+url: "{{address}}/carts/:cartId"
 method: GET
 pathVariables:
-  - key: cartId
-    value: '{{cartId}}'
-order: 4451641790272401
+  cartId: "{{cartId}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 200",()=>{
+          pm.response.to.have.status(200);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4430426395319285

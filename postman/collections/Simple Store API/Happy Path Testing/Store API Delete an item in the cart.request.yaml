@@ -59,19 +59,29 @@ description: |-
   - This operation is **irreversible** — the item cannot be restored once deleted. Re-add it using `POST /carts/:cartId/items` if needed.
   - The `{{accessToken}}` variable must be set in your active environment. Run "Store API Register a new API client" first if needed.
   - After deletion, verify the cart state with `GET /carts/:cartId/items`.
-url: '{{address}}/carts/:cartId/items/:itemId'
+url: "{{address}}/carts/:cartId/items/:itemId"
 method: DELETE
 pathVariables:
-  - key: cartId
-    value: '{{cartId}}'
-  - key: itemId
-    value: ' 432001206'
+  cartId: "{{cartId}}"
+  itemId: "560255939"
 body:
   type: json
-  content: ''
+  content: ""
 auth:
   credentials:
-    - key: token
-      value: '{{accessToken}}'
+    token: "{{accessToken}}"
   type: bearer
-order: 4484485806990072
+scripts:
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 204 ",()=>{
+          pm.response.to.have.status(204);
+      })
+    language: text/javascript
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+order: 4503570219609869

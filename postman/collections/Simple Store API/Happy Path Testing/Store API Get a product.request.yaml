@@ -57,9 +57,54 @@ description: |-
   - The `id` field in the product list response maps directly to the `productId` path variable here.
   - Use the `productId` when adding items to a cart via `POST /carts/:cartId/items`.
   - To also retrieve product label/packaging information, append `?product-label=true` to the URL (see "Store API Query params buddy 2").
-url: '{{address}}/products/:productId'
+url: "{{address}}/products/:productId"
 method: GET
 pathVariables:
-  - key: productId
-    value: '1225'
-order: 4288551216865500
+  productId: "1225"
+scripts:
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+  - type: afterResponse
+    code: |+
+      console.log("After The Response");
+      pm.test("status code should be 200",()=>{
+          pm.response.to.have.status(200);
+      })
+
+      let data=pm.response.json();
+
+      pm.test("check response is object",()=>{
+         pm.expect(data).to.be.an('object');
+      })
+      pm.test("check the body contet category",()=>{
+         pm.expect( data.category).to.eql("fresh-produce");
+      })
+
+      pm.test("check the body content name",()=>{
+         pm.expect( data.name).to.be.a('string')
+      })
+
+      pm.test("check the body content manufacturer",()=>{
+         pm.expect( data.manufacturer).to.eql("Bosch");
+      })
+
+      pm.test("check the body content price",()=>{
+         pm.expect( data.price).to.be.a('number')
+         pm.expect( data.price).to.be.above(0);
+      })
+
+      pm.test("check the body content current-stock",()=>{
+
+         pm.expect( data['current-stock']).to.eql(12);
+      })
+
+      pm.test("check the body content inStock",()=>{
+         pm.expect( data.inStock).to.be.true;
+      })
+
+
+    language: text/javascript
+order: 1561113636914131

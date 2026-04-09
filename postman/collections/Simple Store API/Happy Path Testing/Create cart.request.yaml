@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Create cart
+name: Create cart
 description: >-
   Creates a new shopping cart session. Returns a unique `cartId` that must be
   saved and used in all subsequent cart and order operations.

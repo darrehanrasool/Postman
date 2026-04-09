@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API  Update an order
+name: Update an order
 description: |-
   Partially updates an existing order using HTTP PATCH. Only the fields provided in the request body are updated — omitted fields remain unchanged. Useful for correcting a customer name or updating a delivery comment after the order has been placed.
 
@@ -81,7 +81,8 @@ description: |-
 url: "{{address}}/orders/:orderId"
 method: PATCH
 pathVariables:
-  orderId: UK8eVRS1aUMQLbfshyyLN
+  - key: orderId
+    value: UK8eVRS1aUMQLbfshyyLN
 body:
   type: json
   content: |-
@@ -91,7 +92,8 @@ body:
     }
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

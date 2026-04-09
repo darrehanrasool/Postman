@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API  Get all orders
+name: Get all orders
 description: >-
   Retrieves all orders placed by the authenticated API client. Each client only
   sees their own orders — the `accessToken` scopes the results to the
@@ -131,23 +131,5 @@ body:
   type: json
   content: ""
 auth:
-  credentials:
-    - key: token
-      value: bc0b0fecb2d79af7aa856c40
-  type: bearer
-scripts:
-  - type: afterResponse
-    code: |-
-      console.log("After The Response");
-
-      pm.test("Authorization Error check ",()=>{
-          let response=pm.response.json();
-          pm.expect(response.error).to.eql("Invalid bearer token.");
-      })
-    language: text/javascript
-  - type: beforeRequest
-    code: |-
-      console.log("Before The Request");
-      console.clear();
-    language: text/javascript
-order: 252501935598
+  type: noauth
+order: 3257435631777638

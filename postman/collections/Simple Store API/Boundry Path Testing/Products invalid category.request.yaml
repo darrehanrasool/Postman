@@ -1,0 +1,86 @@
+$kind: http-request
+name: Products invalid category
+description: |-
+  Retrieves a list of all products available in the Simple Grocery Store.
+
+  ## Endpoint
+
+  `GET {{address}}/products`
+
+  Full URL: `https://simple-grocery-store-api.click/products`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  None.
+
+  ## Query Parameters
+
+  | Parameter   | Type    | Required | Description                                                                                                                                                                                                  |
+  |-------------|---------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | `category`  | string  | No       | Filter products by category. Accepted values: `fresh-produce`, `dairy`, `coffee`, `candy`, `meat-seafood`, `bread-bakery`, `beverages`, `pet-care`, `cleaning`, `baby-care`, `health-beauty`, `frozen`, `dry-goods`, `butcher` |
+  | `results`   | integer | No       | Number of results to return. Range: `1`–`20`. Default: `20`.                                                                                                                                                 |
+  | `available` | boolean | No       | Filter by availability. `true` returns only in-stock products; `false` returns only out-of-stock products.                                                                                                   |
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  [
+    {
+      "id": 1225,
+      "category": "candy",
+      "name": "Sour Patch Kids",
+      "inStock": true
+    },
+    {
+      "id": 1710,
+      "category": "dairy",
+      "name": "Whole Milk (1 gal)",
+      "inStock": true
+    },
+    {
+      "id": 4643,
+      "category": "fresh-produce",
+      "name": "Organic Bananas",
+      "inStock": false
+    }
+  ]
+  ```
+
+  ## Notes
+
+  - Without any query parameters, this endpoint returns up to **20 products** across all categories.
+  - Combine `category`, `results`, and `available` to narrow down results — e.g., `?category=dairy&results=5&available=true`.
+  - Use the `id` field from the response as the `productId` path variable in subsequent product or cart requests.
+  - The `{{address}}` variable should be set to `https://simple-grocery-store-api.click` in your active environment.
+url: "{{address}}/products?category=fresh"
+method: GET
+queryParams:
+  category: fresh
+scripts:
+  - type: afterResponse
+    code: >-
+      pm.test("status code should be 400",()=>{
+          pm.response.to.have.status(400);
+      })
+
+      pm.test("check for invalid error message",()=>{
+
+      let response=pm.response.json();
+
+      pm.expect(response.error).to.be.eql("Invalid value for query parameter
+      'category'. Must be one of: coffee, fresh-produce, meat-seafood, candy,
+      dairy, bread-bakery, eggs")
+
+      })
+    language: text/javascript
+order: 1775752548311

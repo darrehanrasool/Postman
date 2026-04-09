@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Create a new order
+name: Create a new order
 description: |-
   Places a new order by converting a shopping cart into a confirmed order. Returns a unique `orderId` for the newly created order.
 
@@ -91,7 +91,10 @@ body:
         "comment":"Wallahi Amazing Product and Service Habibipick up 5:00 am 🫥"
     }
 auth:
-  credentials:
-    token: bc0b0fecb2d79af7aa856c407a849613624344c10a688013a
-  type: bearer
-order: 1775745224180
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |+
+      
+    language: text/javascript
+order: 1474313611413

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Query params buddy 2
+name: Query params buddy 2
 description: |-
   Demonstrates combining a path variable and a query parameter in a single request. Retrieves detailed information for a specific product (ID `1225`) and includes product label data by passing `product-label=true`.
 
@@ -60,9 +60,11 @@ description: |-
 url: "{{address}}/products/:productId?product-label=true"
 method: GET
 queryParams:
-  product-label: "true"
+  - key: product-label
+    value: "true"
 pathVariables:
-  productId: "1225"
+  - key: productId
+    value: "1225"
 scripts:
   - type: beforeRequest
     code: |-

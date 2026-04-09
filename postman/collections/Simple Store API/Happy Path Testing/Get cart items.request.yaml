@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Get cart items
+name: Get cart items
 description: |-
   Retrieves all items currently in a specific shopping cart.
 
@@ -67,7 +67,8 @@ description: |-
 url: "{{address}}/carts/:cartId/items"
 method: GET
 pathVariables:
-  cartId: "{{cartId}}"
+  - key: cartId
+    value: "{{cartId}}"
 scripts:
   - type: afterResponse
     code: |-

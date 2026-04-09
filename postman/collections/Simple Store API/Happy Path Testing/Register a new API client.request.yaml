@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Register a new API client
+name: Register a new API client
 description: |-
   Registers a new API client with the Simple Grocery Store API and returns a Bearer token (`accessToken`). This token is required for all authenticated endpoints (cart item modifications, orders).
 

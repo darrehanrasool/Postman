@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API  Get all orders
+name: Get all orders
 description: >-
   Retrieves all orders placed by the authenticated API client. Each client only
   sees their own orders — the `accessToken` scopes the results to the
@@ -132,19 +132,7 @@ body:
   content: ""
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: bc0b0fecb2d79af7aa856c40
   type: bearer
-scripts:
-  - type: afterResponse
-    code: |-
-      console.log("After The Response");
-      pm.test("status code should be 200",()=>{
-          pm.response.to.have.status(200);
-      })
-    language: text/javascript
-  - type: beforeRequest
-    code: |-
-      console.log("Before The Request");
-      console.clear();
-    language: text/javascript
-order: 4503595636119714
+order: 252501935598

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API  Get a single order
+name: Get a single order
 description: |-
   Retrieves the full details of a specific order by its ID. Optionally includes invoice data when the `invoice=true` query parameter is provided.
 
@@ -86,15 +86,18 @@ description: |-
 url: "{{address}}/orders/:orderId?invoice=true"
 method: GET
 queryParams:
-  invoice: "true"
+  - key: invoice
+    value: "true"
 pathVariables:
-  orderId: UK8eVRS1aUMQLbfshyyLN
+  - key: orderId
+    value: UK8eVRS1aUMQLbfshyyLN
 body:
   type: json
   content: ""
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

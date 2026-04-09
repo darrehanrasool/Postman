@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Create a new order
+name: Create a new order
 description: |-
   Places a new order by converting a shopping cart into a confirmed order. Returns a unique `orderId` for the newly created order.
 
@@ -91,20 +91,8 @@ body:
         "comment":"Wallahi Amazing Product and Service Habibipick up 5:00 am 🫥"
     }
 auth:
-  type: noauth
-scripts:
-  - type: afterResponse
-    code: |-
-      console.log("After The Response");
-
-      pm.test("Authorization Error check ",()=>{
-          let response=pm.response.json();
-          pm.expect(response.error).to.eql("Missing Authorization header.");
-      })
-    language: text/javascript
-  - type: beforeRequest
-    code: |-
-      console.log("Before The Request");
-      console.clear();
-    language: text/javascript
-order: 1474313611413
+  credentials:
+    - key: token
+      value: bc0b0fecb2d79af7aa856c407a849613624344c10a688013a
+  type: bearer
+order: 1775745224180

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Add an item to cart
+name: Add an item to cart
 description: |-
   Adds a product to an existing shopping cart. Returns the unique `itemId` for the newly added cart item.
 
@@ -72,7 +72,8 @@ description: |-
 url: "{{address}}/carts/:cartId/items"
 method: POST
 pathVariables:
-  cartId: "{{cartId}}"
+  - key: cartId
+    value: "{{cartId}}"
 body:
   type: json
   content: |-

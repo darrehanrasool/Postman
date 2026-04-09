@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Get a product
+name: Get a product
 description: |-
   Retrieves the full details of a single product by its unique ID.
 
@@ -60,7 +60,8 @@ description: |-
 url: "{{address}}/products/:productId"
 method: GET
 pathVariables:
-  productId: "1225"
+  - key: productId
+    value: "1225"
 scripts:
   - type: beforeRequest
     code: |-

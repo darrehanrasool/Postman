@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Get a cart
+name: Get a cart
 description: |-
   Retrieves the details of an existing shopping cart, including its items and metadata.
 
@@ -61,7 +61,8 @@ description: |-
 url: "{{address}}/carts/:cartId"
 method: GET
 pathVariables:
-  cartId: "{{cartId}}"
+  - key: cartId
+    value: "{{cartId}}"
 scripts:
   - type: afterResponse
     code: |-

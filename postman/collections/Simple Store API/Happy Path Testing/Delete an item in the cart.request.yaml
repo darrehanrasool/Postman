@@ -1,11 +1,11 @@
 $kind: http-request
-name: Store API Modify an item in the cart
+name: Delete an item in the cart
 description: |-
-  Partially updates an existing cart item — specifically, updates the quantity of a product already in the cart. This is a partial update (PATCH) and only the `quantity` field needs to be provided.
+  Permanently removes a specific item from a shopping cart. The cart itself remains intact — only the specified item is deleted.
 
   ## Endpoint
 
-  `PATCH {{address}}/carts/:cartId/items/:itemId`
+  `DELETE {{address}}/carts/:cartId/items/:itemId`
 
   Full URL: `https://simple-grocery-store-api.click/carts/s_8yzDNIZb5mJ7BgjKaEC/items/432001206`
 
@@ -20,7 +20,7 @@ description: |-
   | Variable | Type    | Required | Value in this request | Description                                                                 |
   |----------|---------|----------|-----------------------|-----------------------------------------------------------------------------|
   | `cartId` | string  | Yes      | `{{cartId}}`          | The unique cart identifier.                                                 |
-  | `itemId` | integer | Yes      | `432001206`           | The unique item identifier within the cart. Obtained from `POST /carts/:cartId/items` or `GET /carts/:cartId/items`. |
+  | `itemId` | integer | Yes      | `432001206`           | The unique item identifier within the cart. Note: ensure there is no leading space in the value. |
 
   ## Query Parameters
 
@@ -28,23 +28,13 @@ description: |-
 
   ## Request Body
 
-  **Content-Type:** `application/json`
-
-  | Field      | Type    | Required | Description                                              |
-  |------------|---------|----------|----------------------------------------------------------|
-  | `quantity` | integer | Yes      | The new quantity for the item. Must be a positive integer. |
-
-  ```json
-  {
-    "quantity": 3
-  }
-  ```
+  None — no request body is required or accepted for DELETE requests.
 
   ## Example Response
 
   **Status:** `204 No Content`
 
-  *(No response body — a `204` status confirms the update was successful.)*
+  *(No response body — a `204` status confirms the item was successfully deleted.)*
 
   **Status:** `401 Unauthorized` (missing or invalid token)
 
@@ -54,33 +44,41 @@ description: |-
   }
   ```
 
+  **Status:** `404 Not Found` (item does not exist in the cart)
+
+  ```json
+  {
+    "error": "No item with id '432001206' in cart 's_8yzDNIZb5mJ7BgjKaEC'."
+  }
+  ```
+
   ## Notes
 
-  - Unlike `PUT` (which fully replaces the item), `PATCH` only updates the fields you provide — in this case, just `quantity`.
-  - A `204 No Content` response with no body is the expected success response.
+  - A `204 No Content` response with no body is the expected success response — this is standard REST behaviour for DELETE.
+  - **Watch out for leading spaces** in the `itemId` path variable value (e.g., `" 432001206"` vs `"432001206"`). A leading space will cause a `404` error.
+  - This operation is **irreversible** — the item cannot be restored once deleted. Re-add it using `POST /carts/:cartId/items` if needed.
   - The `{{accessToken}}` variable must be set in your active environment. Run "Store API Register a new API client" first if needed.
-  - The `itemId` (`432001206`) should be replaced with the actual item ID from your cart session.
-  - To change the product itself (not just the quantity), use the `PUT` endpoint ("Store API Replace an item in the cart").
+  - After deletion, verify the cart state with `GET /carts/:cartId/items`.
 url: "{{address}}/carts/:cartId/items/:itemId"
-method: PATCH
+method: DELETE
 pathVariables:
-  cartId: "{{cartId}}"
-  itemId: "984013221"
+  - key: cartId
+    value: "{{cartId}}"
+  - key: itemId
+    value: "560255939"
 body:
   type: json
-  content: |-
-    {
-        "quantity": 4
-    }
+  content: ""
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse
     code: |-
       console.log("After The Response");
-      pm.test("status code should be 204",()=>{
+      pm.test("status code should be 204 ",()=>{
           pm.response.to.have.status(204);
       })
     language: text/javascript
@@ -89,4 +87,4 @@ scripts:
       console.log("Before The Request");
       console.clear();
     language: text/javascript
-order: 4495374440343735
+order: 4503570219609869

@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Products
+name: Get Products invalid inputs < minimum
 description: |-
   Retrieves a list of all products available in the Simple Grocery Store.
 
@@ -62,19 +62,22 @@ description: |-
   - Combine `category`, `results`, and `available` to narrow down results — e.g., `?category=dairy&results=5&available=true`.
   - Use the `id` field from the response as the `productId` path variable in subsequent product or cart requests.
   - The `{{address}}` variable should be set to `https://simple-grocery-store-api.click` in your active environment.
-url: "{{address}}/products"
+url: "{{address}}/products?results=21"
 method: GET
+queryParams:
+  - key: results
+    value: "21"
 scripts:
-  - type: beforeRequest
-    code: |-
-      console.log("Before The Request");
-      console.clear();
-    language: text/javascript
   - type: afterResponse
-    code: |-
-      console.log("After The Response");
-      pm.test("status code should be 200",()=>{
-          pm.response.to.have.status(200);
+    code: >-
+      pm.test("status code should be 400",()=>{
+          pm.response.to.have.status(400);
+      })
+
+
+      pm.test("check for invalid error message ",()=>{
+          let response=pm.response.json();
+          pm.expect(response.error).to.be.contain("Invalid value for query parameter 'results'. Cannot be greater than 20.");
       })
     language: text/javascript
-order: 1246358920581259
+order: 868607336921

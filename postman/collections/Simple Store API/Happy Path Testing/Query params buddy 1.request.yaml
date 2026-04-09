@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Query params buddy 1
+name: Query params buddy 1
 description: |-
   Demonstrates how to use query parameters with the GET /products endpoint. This example filters products to show only available candy items, limited to 1 result.
 
@@ -53,9 +53,12 @@ description: |-
 url: "{{address}}/products?category=candy&results =1&available=true"
 method: GET
 queryParams:
-  category: candy
-  "results ": "1"
-  available: "true"
+  - key: category
+    value: candy
+  - key: "results "
+    value: "1"
+  - key: available
+    value: "true"
 scripts:
   - type: afterResponse
     code: |-

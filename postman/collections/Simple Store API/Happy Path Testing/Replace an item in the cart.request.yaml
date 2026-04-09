@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Replace an item in the cart
+name: Replace an item in the cart
 description: |-
   Fully replaces an existing cart item with a different product. Unlike PATCH (which only updates quantity), PUT replaces the entire item — allowing you to swap the product and set a new quantity in one operation.
 
@@ -66,8 +66,10 @@ description: |-
 url: "{{address}}/carts/:cartId/items/:itemId"
 method: PUT
 pathVariables:
-  cartId: "{{cartId}}"
-  itemId: "852096932"
+  - key: cartId
+    value: "{{cartId}}"
+  - key: itemId
+    value: "852096932"
 body:
   type: json
   content: |-
@@ -77,7 +79,8 @@ body:
     }
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

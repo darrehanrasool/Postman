@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Create a new order
+name: Create a new order
 description: |-
   Places a new order by converting a shopping cart into a confirmed order. Returns a unique `orderId` for the newly created order.
 
@@ -92,7 +92,8 @@ body:
     }
 auth:
   credentials:
-    token: "{{accessToken}}"
+    - key: token
+      value: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

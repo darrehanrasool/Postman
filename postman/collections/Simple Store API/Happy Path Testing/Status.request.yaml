@@ -1,5 +1,5 @@
 $kind: http-request
-name: Store API Status
+name: Status
 description: >-
   Checks whether the Simple Grocery Store API is up and running.
 

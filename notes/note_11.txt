@@ -23,5 +23,3 @@ A: Testing at minimum and maximum limits.
 
 Q: What is negative testing?
 A: Testing with invalid inputs.
-
-==================================================

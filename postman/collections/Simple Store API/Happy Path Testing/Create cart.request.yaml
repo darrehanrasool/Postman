@@ -77,7 +77,7 @@ url: "{{address}}/carts"
 method: POST
 scripts:
   - type: beforeRequest
-    code: |-
+    code: |
       console.log("Before The Request");
       console.clear();
     language: text/javascript
@@ -87,5 +87,7 @@ scripts:
       pm.test("status code should be 201",()=>{
           pm.response.to.have.status(201);
       })
+      const cartResponseId = pm.response.json();
+      pm.collectionVariables.set(cartResponseId.cartId)
     language: text/javascript
 order: 4289338052323584

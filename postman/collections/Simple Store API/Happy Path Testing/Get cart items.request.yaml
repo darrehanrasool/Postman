@@ -67,8 +67,7 @@ description: |-
 url: "{{address}}/carts/:cartId/items"
 method: GET
 pathVariables:
-  - key: cartId
-    value: "{{cartId}}"
+  cartId: "{{cartResponseId}}"
 scripts:
   - type: afterResponse
     code: |-

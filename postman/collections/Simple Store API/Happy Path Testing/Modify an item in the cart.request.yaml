@@ -64,10 +64,8 @@ description: |-
 url: "{{address}}/carts/:cartId/items/:itemId"
 method: PATCH
 pathVariables:
-  - key: cartId
-    value: "{{cartId}}"
-  - key: itemId
-    value: "984013221"
+  cartId: "{{accessToken}}{"
+  itemId: "{{productResponseId}}"
 body:
   type: json
   content: |-
@@ -76,8 +74,7 @@ body:
     }
 auth:
   credentials:
-    - key: token
-      value: "{{accessToken}}"
+    token: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

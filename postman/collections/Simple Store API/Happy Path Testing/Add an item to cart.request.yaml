@@ -72,13 +72,12 @@ description: |-
 url: "{{address}}/carts/:cartId/items"
 method: POST
 pathVariables:
-  - key: cartId
-    value: "{{cartId}}"
+  cartId: "{{cartResponseId}}"
 body:
   type: json
   content: |-
     {
-        "productId": 2177,
+        "productId": {{productResponseId}},
         "quantity": 1
     }
 scripts:

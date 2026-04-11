@@ -66,10 +66,8 @@ description: |-
 url: "{{address}}/carts/:cartId/items/:itemId"
 method: PUT
 pathVariables:
-  - key: cartId
-    value: "{{cartId}}"
-  - key: itemId
-    value: "852096932"
+  cartId: "{{cartResponseId}}"
+  itemId: "852096932"
 body:
   type: json
   content: |-
@@ -79,8 +77,7 @@ body:
     }
 auth:
   credentials:
-    - key: token
-      value: "{{accessToken}}"
+    token: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

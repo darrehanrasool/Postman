@@ -62,17 +62,14 @@ description: |-
 url: "{{address}}/carts/:cartId/items/:itemId"
 method: DELETE
 pathVariables:
-  - key: cartId
-    value: "{{cartId}}"
-  - key: itemId
-    value: "560255939"
+  cartId: "{{cartResponseId}}"
+  itemId: "{{productResponseId}}"
 body:
   type: json
   content: ""
 auth:
   credentials:
-    - key: token
-      value: "{{accessToken}}"
+    token: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

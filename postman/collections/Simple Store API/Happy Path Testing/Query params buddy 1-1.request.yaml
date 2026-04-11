@@ -1,0 +1,81 @@
+$kind: http-request
+name: Query params buddy 1
+description: |-
+  Demonstrates combining a path variable and a query parameter in a single request. Retrieves detailed information for a specific product (ID `1225`) and includes product label data by passing `product-label=true`.
+
+  ## Endpoint
+
+  `GET {{address}}/products/:productId`
+
+  Full URL: `https://simple-grocery-store-api.click/products/1225?product-label=true`
+
+  ## Authentication
+
+  **None** — this endpoint is publicly accessible and requires no credentials.
+
+  ## Path Variables
+
+  | Variable    | Type    | Required | Value in this request | Description                                      |
+  |-------------|---------|----------|-----------------------|--------------------------------------------------|
+  | `productId` | integer | Yes      | `1225`                | The unique identifier of the product to retrieve.|
+
+  ## Query Parameters
+
+  | Parameter       | Type    | Required | Value in this request | Description                                                                 |
+  |-----------------|---------|----------|-----------------------|-----------------------------------------------------------------------------|
+  | `product-label` | boolean | No       | `true`                | When `true`, includes additional product label/packaging details in the response. |
+
+  ## Request Body
+
+  None.
+
+  ## Example Response
+
+  **Status:** `200 OK`
+
+  ```json
+  {
+    "id": 1225,
+    "category": "candy",
+    "name": "Sour Patch Kids",
+    "manufacturer": "Mondelez International",
+    "price": 2.49,
+    "currentStock": 150,
+    "inStock": true,
+    "productLabel": {
+      "weight": "56g",
+      "servingSize": "16 pieces",
+      "calories": 110,
+      "allergens": ["wheat"]
+    }
+  }
+  ```
+
+  ## Notes
+
+  - This request is a **companion example** to "Store API Get a product" — it shows how to enrich a product response with label data using a query parameter.
+  - The `productId` value (`1225`) can be replaced with any valid product ID obtained from the `GET /products` endpoint.
+  - Omitting `product-label=true` (or setting it to `false`) will return the standard product object without the label details.
+  - This pattern — path variable for resource identity + query param for response shaping — is a common REST API design pattern.
+url: "{{address}}/products/:productId?product-label=true"
+method: GET
+queryParams:
+  - key: product-label
+    value: "true"
+pathVariables:
+  - key: productId
+    value: "{{productResponseId}}"
+scripts:
+  - type: beforeRequest
+    code: |-
+      console.log("Before The Request");
+      console.clear();
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      console.log("After The Response");
+      pm.test("status code should be 200 ",()=>{
+          pm.response.to.have.status(200);
+      })
+    language: text/javascript
+order: 2127025349273393

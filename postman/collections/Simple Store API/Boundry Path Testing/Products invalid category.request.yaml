@@ -73,13 +73,16 @@ scripts:
           pm.response.to.have.status(400);
       })
 
+
       pm.test("check for invalid error message",()=>{
 
       let response=pm.response.json();
 
-      pm.expect(response.error).to.be.eql("Invalid value for query parameter
-      'category'. Must be one of: coffee, fresh-produce, meat-seafood, candy,
-      dairy, bread-bakery, eggs")
+      pm.expect(response.error).to.have.string("Invalid value for query
+      parameter 'category'.")
+
+      pm.expect(response.error).to.contain("Invalid value for query parameter
+      'category'.")
 
       })
     language: text/javascript

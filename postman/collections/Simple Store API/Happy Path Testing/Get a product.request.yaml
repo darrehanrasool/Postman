@@ -60,8 +60,7 @@ description: |-
 url: "{{address}}/products/:productId"
 method: GET
 pathVariables:
-  - key: productId
-    value: "1225"
+  productId: "{{productResponseId}}"
 scripts:
   - type: beforeRequest
     code: |-

@@ -62,11 +62,10 @@ description: |-
   - Combine `category`, `results`, and `available` to narrow down results — e.g., `?category=dairy&results=5&available=true`.
   - Use the `id` field from the response as the `productId` path variable in subsequent product or cart requests.
   - The `{{address}}` variable should be set to `https://simple-grocery-store-api.click` in your active environment.
-url: "{{address}}/products?results=21"
+url: "{{address}}/products?results=-1"
 method: GET
 queryParams:
-  - key: results
-    value: "21"
+  results: "-1"
 scripts:
   - type: afterResponse
     code: >-
@@ -77,7 +76,7 @@ scripts:
 
       pm.test("check for invalid error message ",()=>{
           let response=pm.response.json();
-          pm.expect(response.error).to.be.contain("Invalid value for query parameter 'results'. Cannot be greater than 20.");
+          pm.expect(response.error).to.be.contain("Invalid value for query parameter 'results'. Must be greater than 0.");
       })
     language: text/javascript
 order: 868607336921

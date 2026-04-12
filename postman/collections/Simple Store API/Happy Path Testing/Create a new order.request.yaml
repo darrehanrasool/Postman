@@ -86,14 +86,13 @@ body:
   type: json
   content: |-
     {
-        "cartId":"{{cartId}}",
+        "cartId":"{{cartResponseId}}",
         "customerName": "{{$randomFullName}}",
         "comment":"Wallahi Amazing Product and Service Habibipick up 5:00 am 🫥"
     }
 auth:
   credentials:
-    - key: token
-      value: "{{accessToken}}"
+    token: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

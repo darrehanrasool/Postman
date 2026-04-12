@@ -81,8 +81,7 @@ description: |-
 url: "{{address}}/orders/:orderId"
 method: PATCH
 pathVariables:
-  - key: orderId
-    value: UK8eVRS1aUMQLbfshyyLN
+  orderId: mcW9x25FFp4Xa7ViBQ3A0s
 body:
   type: json
   content: |-
@@ -92,8 +91,7 @@ body:
     }
 auth:
   credentials:
-    - key: token
-      value: "{{accessToken}}"
+    token: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

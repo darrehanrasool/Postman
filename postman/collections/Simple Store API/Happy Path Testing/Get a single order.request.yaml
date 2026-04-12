@@ -86,18 +86,15 @@ description: |-
 url: "{{address}}/orders/:orderId?invoice=true"
 method: GET
 queryParams:
-  - key: invoice
-    value: "true"
+  invoice: "true"
 pathVariables:
-  - key: orderId
-    value: UK8eVRS1aUMQLbfshyyLN
+  orderId: mcW9x25FFp4Xa7ViBQ3A0
 body:
   type: json
   content: ""
 auth:
   credentials:
-    - key: token
-      value: "{{accessToken}}"
+    token: "{{accessToken}}"
   type: bearer
 scripts:
   - type: afterResponse

@@ -64,7 +64,7 @@ description: |-
 url: "{{address}}/carts/:cartId/items/:itemId"
 method: PATCH
 pathVariables:
-  cartId: "{{accessToken}}{"
+  cartId: "{{accessToken}}"
   itemId: "{{productResponseId}}"
 body:
   type: json

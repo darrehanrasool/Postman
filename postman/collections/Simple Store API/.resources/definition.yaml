@@ -103,7 +103,5 @@ description: |-
 variables:
   address: https://simple-grocery-store-api.click
   accessToken: bc0b0fecb2d79af7aa856c407a849613624344c10a688013a2a3fe3ce8946e03
-  cartId: 5gt389jPD48tIr4tvVikr
-  userName: Dar Rehan Rasool
   productResponseId: "1225"
   cartResponseId: ""
